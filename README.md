@@ -1,13 +1,15 @@
-# Exploring Lending Practices and Customer Insights in Fintech
+# Scalable Data Pipeline for Fintech Analytics
 
 ## Overview  
-This project analyzes lending practices and customer behavior in the Fintech industry using a data-driven approach. By leveraging AWS-based data pipelines and interactive Tableau dashboards, we identify key patterns in loan issuance, repayment, and regional lending trends.  
+This project builds a scalable, production-style ETL pipeline to process and analyze lending and customer behavior data in the fintech industry. The system ingests raw data, performs automated validations, and serves clean, analytics-ready data to Tableau dashboards for decision-making.
+
+It is built entirely on AWS services, follows modular design principles, and includes automated quality checks using Great Expectations.
 
 ## Objectives  
-- Optimize loan approval processes and identify patterns in lending.  
-- Segment customers based on demographics and behavior.  
-- Analyze regional trends in borrowing and loan distribution.  
-- Develop interactive visualizations for strategic insights.  
+- Design a scalable ETL architecture using AWS services
+- Automate data validation and transformation workflows
+- Enable real-time dashboarding and analytics for fintech KPIs
+- Support future integration of predictive models and external data
 
 ## Dataset  
 The project uses the **BigQuery Fintech Dataset** from Kaggle, which includes customer demographics, loan details, lending trends, and regional borrowing data.  
@@ -18,7 +20,27 @@ The project uses the **BigQuery Fintech Dataset** from Kaggle, which includes cu
 - **AWS S3, AWS Glue, AWS RDS (PostgreSQL)** for data storage, ETL processing, and analytics.  
 - **Python (Pandas, SQLAlchemy, Boto3)** for data manipulation and AWS interactions.  
 - **Great Expectations** for data validation and quality checks.  
-- **Tableau** for interactive data visualization.  
+- **Tableau** for interactive data visualization.
+
+## Architecture
+- Data Ingestion: Raw CSVs uploaded to S3
+- ETL Processing: AWS Glue job transforms and loads data into RDS
+- Validation Layer: Great Expectations suite integrated into the pipeline to enforce schema, null checks, and range constraints
+- Analytics & Reporting: Tableau connected to RDS for real-time dashboards
+- Monitoring: CloudWatch used to track Glue job performance and logs
+
+## Key Features
+- Modular ETL job with separation of ingestion, transformation, and validation
+- Reusable transformation scripts with SQLAlchemy for database interactions
+- Dynamic Glue jobs triggered via Lambda based on S3 events
+- Fully automated data pipeline for daily refresh cycles
+- Integration of Tableau for live querying and interactive filtering
+
+## Analytics Use Cases
+- Loan approval volume and trends by region and customer type
+- Loan purpose analysis (debt consolidation, business loans, etc.)
+- Customer segmentation by risk level, interest rate, and payment behavior
+- Drill-down visualizations by state, loan grade, and demographics
 
 ## Key Insights  
 - **Loan Approval & Regional Trends**: California, Texas, and New York lead in loan amounts.  
